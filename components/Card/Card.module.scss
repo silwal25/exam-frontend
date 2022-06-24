@@ -1,0 +1,40 @@
+.card {
+  padding: 8rem 3rem;
+  position: relative;
+  border-radius: 1rem;
+  //width: fit-content;
+  background-color: #fff;
+  color: #000;
+  overflow: hidden;
+  button {
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    background-color: transparent;
+    border: none;
+  }
+}
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.sem {
+  height: 8rem;
+  width: 8rem !important;
+  position: absolute;
+  display: flex;
+  right: -3rem;
+  top: -3rem;
+  background-color: #ef233c;
+  width: fit-content;
+  border-radius: 50%;
+  p {
+    color: #fff;
+    font-weight: 700;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 2rem;
+  }
+}

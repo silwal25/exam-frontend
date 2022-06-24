@@ -1,0 +1,28 @@
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 2rem;
+}
+
+.form {
+  padding: 4rem 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  select {
+    flex: 1;
+    text-transform: uppercase;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 0.5rem;
+    option {
+      text-transform: uppercase;
+    }
+  }
+  button {
+    flex: 0.4;
+    padding: 1rem 3rem;
+    border: none;
+    border-radius: 0.5rem;
+  }
+}
