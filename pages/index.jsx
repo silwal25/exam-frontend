@@ -57,8 +57,9 @@ export default function Home() {
             onChange={(e) =>
               setSearchData({ ...searchData, course: e.target.selectedOptions[0].value })
             }
+            value={searchData.course}
           >
-            <option value={null}>Select Course</option>
+            <option value="">Select Course</option>
             {courses.map((item) => (
               <option
                 value={item}
@@ -75,8 +76,9 @@ export default function Home() {
             onChange={(e) =>
               setSearchData({ ...searchData, branch: e.target.selectedOptions[0].value })
             }
+            value={searchData.branch}
           >
-            <option value={null}>Select Branch</option>
+            <option value="">Select Branch</option>
             {branches.map((item) => (
               <option value={item} key={Math.random() * 100}>
                 {item}
@@ -89,8 +91,9 @@ export default function Home() {
             onChange={(e) =>
               setSearchData({ ...searchData, semester: e.target.selectedOptions[0].value })
             }
+            value={searchData.semester}
           >
-            <option value={null}>Select Semester</option>
+            <option value="">Select Semester</option>
             {["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"].map((item) => (
               <option value={item} key={Math.random() * 100}>
                 {item}

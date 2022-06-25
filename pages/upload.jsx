@@ -112,6 +112,7 @@ export default function Upload() {
                     id="semester"
                     onChange={(e) => setSemester(e.target.selectedOptions[0].value)}
                     required
+                    value={semester}
                   >
                     <option value={null}>Select Semester</option>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((item) => (
@@ -127,6 +128,7 @@ export default function Upload() {
                     id="course"
                     onChange={(e) => setCourse(e.target.selectedOptions[0].value)}
                     required
+                    value={course}
                   >
                     <option value={null}>Select Course</option>
                     {courses.map((item) => (
@@ -142,6 +144,7 @@ export default function Upload() {
                     id="branch"
                     onChange={(e) => setBranch(e.target.selectedOptions[0].value)}
                     required
+                    value={branch}
                   >
                     <option value={null}>Select Branch</option>
                     {branches.map((item) => (
