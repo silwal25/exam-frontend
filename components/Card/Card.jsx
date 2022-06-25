@@ -19,7 +19,7 @@ export default function Card({ data }) {
         <button>
           <a
             className="icon-download"
-            href={process.env.NEXT_PUBLIC_CMS_URL + data.attributes.file.data.attributes.url}
+            href={data.attributes.file.data.attributes.url}
             download
           ></a>
         </button>

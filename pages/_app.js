@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }) {
     <StateProvider>
       <Verify>
         <Layout>
-          <Toast />
           <Component {...pageProps} />
         </Layout>
       </Verify>
