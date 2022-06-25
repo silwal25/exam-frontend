@@ -9,9 +9,6 @@ export default function Verify({ children }) {
   // Check whether the user is logged in or not.
   // If yes, then check the token for validations
   useEffect(() => {
-    if (isSend == true) {
-      return
-    }
     const token = localStorage.getItem("auth_token")
     if (token) {
       // Token is found
