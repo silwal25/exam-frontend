@@ -3,7 +3,6 @@ import styles from "./Layout.module.scss"
 import Header from "../Header/Header"
 import Toast from "../Toast/Toast"
 import { useStateContext } from "../Context"
-import HeaderLoggedIn from "../Header/HeaderLoggedIn"
 import { useEffect, useState } from "react"
 
 export default function Layout({ children }) {
