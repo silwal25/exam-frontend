@@ -4,7 +4,9 @@ const StateContext = createContext()
 const DispatchContext = createContext()
 
 const initialState = {
-  isLoggedIn: false
+  isLoggedIn: false,
+  toastVisible: false,
+  toastMessage: ""
 }
 
 const reducer = (state, action) => {
@@ -13,6 +15,10 @@ const reducer = (state, action) => {
       return Object.assign({}, state, { isLoggedIn: true })
     case "logout":
       return Object.assign({}, state, { isLoggedIn: false })
+    case "toastOn":
+      return Object.assign({}, state, { toastVisible: true, toastMessage: action.payload })
+    case "toastOff":
+      return Object.assign({}, state, { toastVisible: false })
     default:
       throw new Error(`Unknown action ${action.type}`)
   }

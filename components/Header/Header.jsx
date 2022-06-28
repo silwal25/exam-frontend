@@ -22,7 +22,7 @@ export default function Header() {
             <h2>EXAM TIME</h2>
           </Link>
         </div>
-        {!appState.isLoggedIn ? (
+        {!appState.isLoggedIn && (
           <nav className={styles.nav}>
             <ul>
               <li>
@@ -38,7 +38,8 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-        ) : (
+        )}
+        {appState.isLoggedIn && (
           <nav className={styles.nav}>
             <ul>
               <li>

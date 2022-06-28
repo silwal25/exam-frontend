@@ -1,18 +1,29 @@
 import styles from "../styles/Login.module.scss"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import axios from "axios"
 import { useRouter } from "next/router"
 
-import { useStateContext } from "../components/Context"
+import { useStateContext, useDispatchContext } from "../components/Context"
 
 export default function Login() {
   const appState = useStateContext()
+  const dispatch = useDispatchContext()
   const [userName, setName] = useState("")
   const [password, setPassword] = useState("")
+  // const nameRef = useRef(null)
+  // const passRef = useRef(null)
   const router = useRouter()
 
   const login = async (e) => {
     e.preventDefault()
+    if (userName.length < 6) {
+      dispatch({ type: "toastOn", payload: "Username must be 6 characters long" })
+      return
+    }
+    if (password.length < 6) {
+      dispatch({ type: "toastOn", payload: "Password must be 6 characters long" })
+      return
+    }
     const data = {
       userName,
       password
@@ -23,14 +34,34 @@ export default function Login() {
         url: process.env.NEXT_PUBLIC_BACKEND_URL + "/login",
         data: data
       })
-      localStorage.setItem("auth_token", res.data.auth_token)
-      alert("Successfully Logged in")
-      router.replace("/")
-      router.reload()
+      if (res.data.status === 200) {
+        localStorage.setItem("auth_token", res.data.auth_token)
+        dispatch({ type: "toastOn", payload: "Logged in successfully" })
+        router.reload("/")
+      } else {
+        dispatch({ type: "toastOn", payload: res.data.message })
+      }
     } catch (err) {
       console.log(err)
     }
   }
+
+  // To verify the entered username
+  // useEffect(() => {
+  //   if (userName.length < 6) {
+  //     nameRef.current.innerHTML = "Must be at least 6 characters long"
+  //   } else {
+  //     nameRef.current.innerHTML = ""
+  //   }
+  // }, [userName])
+
+  // useEffect(() => {
+  //   if (password.length < 6) {
+  //     passRef.current.innerHTML = "Must be at least 6 characters long"
+  //   } else {
+  //     passRef.current.innerHTML = ""
+  //   }
+  // }, [password])
 
   // If the user is already logged in
   // No need to show him this page
@@ -43,7 +74,7 @@ export default function Login() {
       <div className="container">
         <div className={styles.form}>
           <form className="form">
-            <div className="form__group">
+            <div className="form__group d-flex flex-column align-items-center">
               <input
                 type="text"
                 placeholder="Enter username"
@@ -53,7 +84,7 @@ export default function Login() {
                 required
               />
             </div>
-            <div className="form__group">
+            <div className="form__group d-flex flex-column align-items-center">
               <input
                 type="password"
                 placeholder="Enter password"

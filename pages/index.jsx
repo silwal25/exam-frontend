@@ -4,10 +4,11 @@ import { courses, branches } from "../components/data"
 import axios from "axios"
 import { useState, useEffect } from "react"
 import qs from "qs"
-import { useStateContext } from "../components/Context"
+import { useDispatchContext, useStateContext } from "../components/Context"
 
 export default function Home() {
   const appState = useStateContext()
+  const dispatch = useDispatchContext()
   const [data, setData] = useState([])
   const [searchData, setSearchData] = useState({
     course: "",
@@ -15,38 +16,59 @@ export default function Home() {
     semester: ""
   })
 
+  const searchCourse = () => {}
+  const searchBranch = () => {}
+
+  const searchSem = () => {}
+
   const search = async (e) => {
-    e.preventDefault()
+    //e.preventDefault()
     const query = qs.stringify(
       {
         populate: "*",
         filters: {
-          course: {
-            name: searchData.course
-          },
-          branch: {
-            name: searchData.branch
-          },
-          semester: searchData.semester
+          ...(searchData.course && {
+            course: {
+              name: searchData.course
+            }
+          }),
+          ...(searchData.branch && {
+            branch: {
+              name: searchData.branch
+            }
+          }),
+          ...(searchData.semester && {
+            semester: searchData.semester
+          })
         }
       },
       {
         encodeValuesOnly: true
       }
     )
+    console.log(process.env.NEXT_PUBLIC_CMS_URL + `/api/papers?${query}`)
     try {
       const res = await axios.get(process.env.NEXT_PUBLIC_CMS_URL + `/api/papers?${query}`)
-      console.log(res.data)
       if (res.status == 200) {
         setData(res.data.data)
-        console.log(res.data)
       } else {
-        console.log("Error fetching data")
+        console.log("Error fetching data" + res)
       }
     } catch (e) {
       console.log(e)
     }
   }
+
+  const toggleOn = () => {
+    dispatch({ type: "toastOn", payload: "Logged in" })
+  }
+
+  const toggleOff = () => {
+    dispatch({ type: "toastOff" })
+  }
+  useEffect(() => {
+    search()
+  }, [searchData])
   return (
     <div className={styles.home}>
       <div className="container">
@@ -100,10 +122,23 @@ export default function Home() {
               </option>
             ))}
           </select>
-          <button onClick={search}>Search</button>
+          <button
+            onClick={(e) => {
+              e.preventDefault()
+              search()
+            }}
+          >
+            Search
+          </button>
         </form>
         <div className={styles.cards}>
           {data && data.map((item) => <Card data={item} key={item.attributes._id} />)}
+        </div>
+        <div>
+          <button onClick={toggleOn}>on</button>
+          <button className="ml-3" onClick={toggleOff}>
+            off
+          </button>
         </div>
       </div>
     </div>

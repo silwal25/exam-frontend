@@ -20,7 +20,7 @@ export default function Verify({ children }) {
           }
         })
         .then((response) => {
-          // Token is varified
+          // Token is verified
           // set isLoggedIn to true
           console.log("verified")
           appDispatch({ type: "login" })
@@ -29,13 +29,9 @@ export default function Verify({ children }) {
           // Token is invalid
           // Delete the token from local storage
           console.log(error)
-          //localStorage.removeItem("auth_token")
+          localStorage.removeItem("auth_token")
         })
     }
   }, [appDispatch])
-
-  useEffect(() => {
-    console.log(appState)
-  }, [appState])
   return <>{children}</>
 }

@@ -1,0 +1,10 @@
+.toast {
+  position: absolute;
+  background-color: #edf2f4;
+  color: #2b2d42;
+  padding: 2rem 5rem;
+  top: 3rem;
+  right: 3rem;
+  //transform: translateX(130%);
+  transition: translate 0.3s linear;
+}
