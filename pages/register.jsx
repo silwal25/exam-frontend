@@ -42,6 +42,7 @@ export default function Register() {
       if (res.data.status === 200) {
         dispatch({ type: "toggleLoader" })
         dispatch({ type: "toastOn", payload: "Successfully registered" })
+        console.log(res.data)
         router.push("/login")
       } else if (res.data.status === 400) {
         dispatch({ type: "toggleLoader" })

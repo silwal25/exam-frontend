@@ -24,17 +24,19 @@ export default function Upload() {
     bca: 2,
     btech: 3,
     bsc: 4,
-    msc: 5
+    msc: 5,
+    mtech: 6
   }
 
   const branchIds = {
     it: 1,
-    cse: 2
+    cse: 2,
+    "electric vehicles technology": 3
   }
 
   const upload = async (e) => {
     e.preventDefault()
-    console.log(fileRef.current)
+    console.log(branchIds[branch])
     if (fileRef.current.files.length > 0) {
       // Check the file size
       // If it exceed 500kb, show an error message
@@ -97,6 +99,7 @@ export default function Upload() {
         data: formData
       })
       if (res.data) {
+        console.log(branchIds[branch])
         try {
           const res1 = await axios({
             method: "post",
