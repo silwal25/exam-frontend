@@ -5,7 +5,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <p>
         Made by{" "}
-        <a href="https://github.com/silwal25" target="_blank" rel="norferrer noopener">
+        <a href="https://github.com/silwal25" target="_blank" rel="noopener noreferrer">
           Lalit Singh Silwal
         </a>
       </p>

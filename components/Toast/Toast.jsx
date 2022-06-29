@@ -18,7 +18,7 @@ export default function Toast() {
     return () => {
       clearTimeout(timeout)
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={styles.toast} ref={toastRef} onClick={hideToast} s>
