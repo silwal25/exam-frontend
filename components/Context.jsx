@@ -7,7 +7,8 @@ const initialState = {
   isLoggedIn: false,
   toastVisible: false,
   toastMessage: "",
-  user: ""
+  user: "",
+  loaderVisible: false
 }
 
 const reducer = (state, action) => {
@@ -20,6 +21,8 @@ const reducer = (state, action) => {
       return Object.assign({}, state, { toastVisible: true, toastMessage: action.payload })
     case "toastOff":
       return Object.assign({}, state, { toastVisible: false })
+    case "toggleLoader":
+      return Object.assign({}, state, { loaderVisible: !state.loaderVisible })
     default:
       throw new Error(`Unknown action ${action.type}`)
   }

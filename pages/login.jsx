@@ -28,6 +28,7 @@ export default function Login() {
       userName,
       password
     }
+    dispatch({ type: "toggleLoader" })
     try {
       const res = await axios({
         method: "post",
@@ -35,13 +36,17 @@ export default function Login() {
         data: data
       })
       if (res.data.status === 200) {
+        dispatch({ type: "toggleLoader" })
         localStorage.setItem("auth_token", res.data.auth_token)
         dispatch({ type: "toastOn", payload: "Logged in successfully" })
         router.reload("/")
       } else {
+        dispatch({ type: "toggleLoader" })
         dispatch({ type: "toastOn", payload: res.data.message })
       }
     } catch (err) {
+      dispatch({ type: "toggleLoader" })
+      dispatch({ type: "toastOn", payload: "An error has occurred. Please try again later" })
       console.log(err)
     }
   }

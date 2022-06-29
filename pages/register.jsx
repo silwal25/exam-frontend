@@ -31,6 +31,8 @@ export default function Register() {
       email,
       password
     }
+    dispatch({ type: "toggleLoader" })
+
     try {
       const res = await axios({
         method: "post",
@@ -38,15 +40,21 @@ export default function Register() {
         data: data
       })
       if (res.data.status === 200) {
+        dispatch({ type: "toggleLoader" })
         dispatch({ type: "toastOn", payload: "Successfully registered" })
         router.push("/login")
       } else if (res.data.status === 400) {
+        dispatch({ type: "toggleLoader" })
         console.log(res.data.err)
         dispatch({ type: "toastOn", payload: res.data.message })
       } else {
+        dispatch({ type: "toastOn", payload: "Unexpected error, please try again later" })
+        dispatch({ type: "toggleLoader" })
         console.log(res.data)
       }
     } catch (err) {
+      dispatch({ type: "toggleLoader" })
+      dispatch({ type: "toastOn", payload: "Unexpected error, please try again later" })
       console.log(err)
     }
   }

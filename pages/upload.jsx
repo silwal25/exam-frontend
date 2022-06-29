@@ -68,6 +68,11 @@ export default function Upload() {
     if (!year) {
       dispatch({ type: "toastOn", payload: "Please enter a year" })
       return
+    } else {
+      if (isNaN(year)) {
+        dispatch({ type: "toastOn", payload: "Please enter a valid year" })
+        return
+      }
     }
 
     if (!branch) {
@@ -84,6 +89,7 @@ export default function Upload() {
     // Upload the paper
     const formData = new FormData()
     formData.append("files", file)
+    dispatch({ type: "toggleLoader" })
     try {
       const res = await axios({
         method: "post",
@@ -108,16 +114,23 @@ export default function Upload() {
             }
           })
           if (res1.data) {
+            dispatch({ type: "toggleLoader" })
+
             dispatch({
               type: "toastOn",
               payload: "Successfully uploaded. It will be shown in the results after validations"
             })
             router.push("/")
           } else {
-            payload: "Error uploading. Please try again later"
+            dispatch({ type: "toggleLoader" })
+            dispatch({
+              type: "toastOn",
+              payload: "Error uploading. Please try again later"
+            })
             console.log()
           }
         } catch (err) {
+          dispatch({ type: "toggleLoader" })
           dispatch({
             type: "toastOn",
             payload: "Error uploading. Please try again later"
@@ -127,6 +140,7 @@ export default function Upload() {
       }
     } catch (err) {
       // Failed to upload the file
+      dispatch({ type: "toggleLoader" })
       dispatch({
         type: "toastOn",
         payload: "Error uploading. Please try again later"
@@ -237,6 +251,19 @@ export default function Upload() {
               <ol>
                 <li>Only PDF format is allowed</li>
                 <li>
+                  Steps to scan pdf :-
+                  <ul>
+                    <li>Open Office Lens app</li>
+                    <li>Click on the three dots on the top right corner</li>
+                    <li>Click on Resolution</li>
+                    <li>Choose 2.8M optimally, go lower if needed</li>
+                    <li>Scan the pages</li>
+                    <li>Crop the pages properly</li>
+                    <li>Apply the document filter</li>
+                    <li>Save the document</li>
+                  </ul>
+                </li>
+                <li>
                   Please mention the full subject name in the title (eg. instead of writing dsad
                   write Data structures and algorithm design).
                 </li>
@@ -245,11 +272,6 @@ export default function Upload() {
                   And last, I request you to please keep the file size to minimum (max 500kb if
                   possible. Turn your camera megapixels down before capturing). <br></br> Your poor
                   homie can not pay for more server storage (&gt;o_o)&gt;
-                </li>
-                <li>
-                  It is preferred to use office lens for scanning the documents, but regardless of
-                  the app your use, just make sure to apply a document filter at the end so that
-                  everything becomes more legible.
                 </li>
                 <li>
                   To add more courses and suggestions, please contact me{" "}

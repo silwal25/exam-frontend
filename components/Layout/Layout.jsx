@@ -3,6 +3,7 @@ import styles from "./Layout.module.scss"
 import Header from "../Header/Header"
 import Toast from "../Toast/Toast"
 import Footer from "../Footer/Footer"
+import Loader from "../Loader/Loader"
 import { useStateContext } from "../Context"
 import { useEffect, useState } from "react"
 
@@ -21,6 +22,7 @@ export default function Layout({ children }) {
   return (
     <div className={styles.layout}>
       {appState.toastVisible && <Toast />}
+      {appState.loaderVisible && <Loader />}
       <Header />
       <main>{children}</main>
       <Footer />
