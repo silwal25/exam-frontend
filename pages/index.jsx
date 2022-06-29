@@ -16,11 +16,6 @@ export default function Home() {
     semester: ""
   })
 
-  const searchCourse = () => {}
-  const searchBranch = () => {}
-
-  const searchSem = () => {}
-
   const search = async (e) => {
     //e.preventDefault()
     const query = qs.stringify(
@@ -52,9 +47,17 @@ export default function Home() {
       if (res.status == 200) {
         setData(res.data.data)
       } else {
+        dispatch({
+          type: "toastOn",
+          payload: "Error fetching data from the server. Please try again"
+        })
         console.log("Error fetching data" + res)
       }
     } catch (e) {
+      dispatch({
+        type: "toastOn",
+        payload: "Error fetching data from the server. Please try again"
+      })
       console.log(e)
     }
   }
