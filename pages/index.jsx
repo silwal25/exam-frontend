@@ -64,7 +64,7 @@ export default function Home() {
 
   useEffect(() => {
     search()
-  }, [searchData, search])
+  }, [searchData])
 
   return (
     <div className={styles.home}>
