@@ -12,12 +12,12 @@
   gap: 3rem;
   select {
     flex: 1;
-    text-transform: uppercase;
+    text-transform: capitalize;
     padding: 1rem 3rem;
     border: none;
     border-radius: 0.5rem;
     option {
-      text-transform: uppercase;
+      text-transform: capitalize;
     }
   }
   button {
@@ -30,6 +30,7 @@
 
 @media only screen and (max-width: 992px) {
   .form {
+    gap: 1.3rem;
     select {
       flex: 1;
     }
