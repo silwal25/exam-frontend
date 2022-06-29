@@ -6,7 +6,8 @@ const DispatchContext = createContext()
 const initialState = {
   isLoggedIn: false,
   toastVisible: false,
-  toastMessage: ""
+  toastMessage: "",
+  user: ""
 }
 
 const reducer = (state, action) => {

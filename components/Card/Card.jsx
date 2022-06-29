@@ -16,9 +16,9 @@ export default function Card({ data }) {
           <span>{data.attributes.year}</span>
         </p>
         <p className={styles.title}>{data.attributes.title}</p>
-        <button>
+        <button className={styles.download}>
           <a
-            className="icon-download"
+            className={styles.iconDownload + " icon-download"}
             href={data.attributes.file.data.attributes.url}
             download
           ></a>

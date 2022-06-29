@@ -1,9 +1,15 @@
 .form {
-  margin: 10rem 0;
+  margin: 6rem 0;
   display: flex;
   justify-content: center;
   align-items: center;
   form {
+    background-color: rgba($color: #8d99ae, $alpha: 0.25);
+    padding: 2rem;
+    border-radius: 1rem;
     flex-direction: column;
+    * {
+      flex: 1;
+    }
   }
 }

@@ -59,16 +59,10 @@ export default function Home() {
     }
   }
 
-  const toggleOn = () => {
-    dispatch({ type: "toastOn", payload: "Logged in" })
-  }
-
-  const toggleOff = () => {
-    dispatch({ type: "toastOff" })
-  }
   useEffect(() => {
     search()
   }, [searchData])
+
   return (
     <div className={styles.home}>
       <div className="container">
@@ -133,12 +127,6 @@ export default function Home() {
         </form>
         <div className={styles.cards}>
           {data && data.map((item) => <Card data={item} key={item.attributes._id} />)}
-        </div>
-        <div>
-          <button onClick={toggleOn}>on</button>
-          <button className="ml-3" onClick={toggleOff}>
-            off
-          </button>
         </div>
       </div>
     </div>
